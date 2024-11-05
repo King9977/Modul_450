@@ -3,6 +3,7 @@ from unittest.mock import patch
 from app.book import BookService
 import sqlite3
 
+# TODO: Testen frezzen zeit und dann aufrufen und dann sagen wie fiele sec es sind bis ende vom jahr.... es muss was sein was now einsetzt
 def test_publication_date_freezing():
     db_connection = sqlite3.connect(":memory:")
     db_connection.execute("CREATE TABLE Book (id INTEGER PRIMARY KEY, title TEXT, author_id INTEGER, genre_id INTEGER, publication_date TEXT)")
