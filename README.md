@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Modul_450
 =======
 # Buchverwaltungssystem
