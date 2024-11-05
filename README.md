@@ -22,22 +22,22 @@ Das Buchverwaltungssystem ermöglicht die Verwaltung von Büchern, Autoren und G
 LB1/
 ├── app/
 │   ├── __init__.py
-│   ├── author.py       # AuthorService zum Verwalten der Autoren
-│   ├── book.py         # BookService zum Verwalten der Bücher
-│   ├── genre.py        # GenreService zum Verwalten der Genres
+│   ├── author.py
+│   ├── book.py
+│   ├── genre.py
 │
 ├── tests/
 │   ├── __init__.py
-│   ├── test_author.py                 # Test für AuthorService
-│   ├── test_author_with_mock.py       # Test mit Mocking für AuthorService
-│   ├── test_book.py                   # Test für BookService
-│   ├── test_book_with_time_freezing.py # Test mit Time-Freezing für BookService
-│   ├── test_genre.py                  # Test für GenreService
+│   ├── test_author.py
+│   ├── test_author_with_mock.py
+│   ├── test_book.py
+│   ├── test_book_with_time_freezing.py
+│   ├── test_genre.py
 │
-├── db_setup.py           # Skript zum Initialisieren der Datenbank
-├── initialize_db.sql     # SQL-Datei zum Erstellen der Tabellen
-├── main.py               # Hauptskript zum Testen der Grundfunktionen
-└── README.md             # Projektbeschreibung
+├── db_setup.py
+├── initialize_db.sql
+├── main.py
+└── README.md
 ```
 
 ## Installation und Einrichtung
