@@ -13,3 +13,6 @@ class TestAuthorService(unittest.TestCase):
         self.service.add_author("Kaya Senay", "2005-04-06")
         self.mock_cursor.execute.assert_called_once_with("INSERT INTO Author (name, birth_date) VALUES (?, ?)", ("Kaya Senay", "2005-04-06"))
         self.mock_connection.commit.assert_called_once()
+
+if __name__ == '__main__':  # "automation"
+    unittest.main()
