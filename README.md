@@ -1,6 +1,5 @@
 # Modul_450
-=======
-# Buchverwaltungssystem
+## Buchverwaltungssystem
 
 Dieses Projekt ist ein einfaches Buchverwaltungssystem, das die Speicherung, Anzeige und Suche von Büchern in einer SQLite-Datenbank ermöglicht. Es wurde als Teil der LB1-Aufgabe im Modul 450 erstellt und enthält Unit-Tests, um die Funktionalität sicherzustellen.
 
