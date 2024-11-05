@@ -9,7 +9,7 @@ class TestAuthorService(unittest.TestCase):
         self.mock_cursor = self.mock_connection.cursor.return_value
         self.service = AuthorService(self.mock_connection)
 
-    def test_add_author_with_mock(self):
+    def test_add_author_with_mock_data(self):
         self.service.add_author("Kaya Senay", "2005-04-06") # etwas hier ändern, sodass es failed
         self.mock_cursor.execute.assert_called_once_with("INSERT INTO Author (name, birth_date) VALUES (?, ?)", ("Kaya Senay", "2005-04-06"))
         self.mock_connection.commit.assert_called_once()
