@@ -16,3 +16,9 @@ class TestAuthorService(unittest.TestCase):
 
 if __name__ == '__main__':  # "automation" falls man unittest statt pytest benutzt
     unittest.main()
+
+# How to run:
+################
+#
+# python3 -m unittest tests/test_author_with_mock.py    # unittest
+# pytest tests/test_author_with_mock.py                 # pytest
