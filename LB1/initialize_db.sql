@@ -18,3 +18,8 @@ CREATE TABLE IF NOT EXISTS Book (
     FOREIGN KEY (author_id) REFERENCES Author(id),
     FOREIGN KEY (genre_id) REFERENCES Genre(id)
 );
+
+CREATE TABLE IF NOT EXISTS User (
+    username TEXT PRIMARY KEY,
+    birthdate DATE NOT NULL
+);
