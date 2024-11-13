@@ -14,3 +14,14 @@ class BookService:
         cursor = self.db_connection.cursor()
         cursor.execute("SELECT * FROM Book WHERE id = ?", (book_id,))
         return cursor.fetchone()
+
+    def is_book_loaned(self, book_id):
+        cursor = self.db_connection.cursor()
+        cursor.execute("SELECT loaned FROM Book WHERE id = ?", (book_id,))
+        result = cursor.fetchone()
+        
+        if result is None:
+            return None
+        
+        print((result[0])) # to see if true or false in cli
+        return bool(result[0])
