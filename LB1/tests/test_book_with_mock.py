@@ -9,8 +9,8 @@ class TestUserService(unittest.TestCase):
         self.mock_cursor = self.mock_connection.cursor.return_value
         self.service = UserService(self.mock_connection)
 
-    @patch('app.user.datetime')  # mock datetime um zeit zu freezen
-    def test_get_user_based_on_age(self, mock_datetime):
+    @patch('app.user.datetime', wraps=datetime)
+    def test_is_user_adult(self, mock_datetime):
         mock_datetime.now.return_value = datetime(2024, 11, 12)
 
         test_cases = [
@@ -19,21 +19,11 @@ class TestUserService(unittest.TestCase):
         ]
 
         for username, birthdate, expected_result in test_cases:
-            # mock DB
             self.mock_cursor.fetchone.return_value = (username, birthdate)
-            user = self.service.get_user(username, birthdate)
-
-            self.mock_cursor.execute.assert_called_with("SELECT * FROM User WHERE username = ? AND birthdate = ?", (username, birthdate))
-
-            age = (mock_datetime.now.return_value - birthdate).days / 365
-            result = age >= 18  # True falls age 18 or älter, sonst falsch
-
+            result = self.service.is_user_adult(username, birthdate)
             self.assertEqual(result, expected_result)
 
-            if result:
-                print("Buch erfolgreich ausgeliehen")
-            else:
-                print("Abgelehnt: Alter unter 18 Jahren")
+            self.mock_cursor.execute.assert_called_with("SELECT * FROM User WHERE username = ? AND birthdate = ?", (username, birthdate))
 
 if __name__ == '__main__':
     unittest.main()
