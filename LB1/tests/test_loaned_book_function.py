@@ -21,5 +21,11 @@ class TestBookService(unittest.TestCase):
             self.assertEqual(result, expected_result)
             self.mock_cursor.execute.assert_called_with("SELECT loaned FROM Book WHERE id = ?", (book_id,))
 
+    def test_is_book_loaned_invalid_input(self):
+        invalid_inputs = [-1, 0, "not an integer", 3.14, None]
+        for invalid_input in invalid_inputs:
+            result = self.service.is_book_loaned(invalid_input)
+            self.assertIsNone(result, f"Erwatet None für ungültigen input: {invalid_input}")
+
 if __name__ == '__main__':
     unittest.main()
