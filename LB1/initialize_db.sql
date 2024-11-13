@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Book (
     author_id INTEGER,
     genre_id INTEGER,
     publication_date TEXT,
+    loaned BOOLEAN,
     FOREIGN KEY (author_id) REFERENCES Author(id),
     FOREIGN KEY (genre_id) REFERENCES Genre(id)
 );
