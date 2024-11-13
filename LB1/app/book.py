@@ -16,12 +16,25 @@ class BookService:
         return cursor.fetchone()
 
     def is_book_loaned(self, book_id):
-        cursor = self.db_connection.cursor()
-        cursor.execute("SELECT loaned FROM Book WHERE id = ?", (book_id,))
-        result = cursor.fetchone()
+        try:
+            # schau ob int und positiv
+            if not isinstance(book_id, int) or book_id <= 0:
+                raise ValueError("book_id muss positiv und eine Zahl sein.")
+            
+            cursor = self.db_connection.cursor()
+            cursor.execute("SELECT loaned FROM Book WHERE id = ?", (book_id,))
+            result = cursor.fetchone()
+            
+            if result is None:
+                print(f"Buch mit id {book_id} nicht gefunden.")
+                return None
+            
+            print(result[0])  # zu schauen ob true oder false in der cli
+            return bool(result[0])
         
-        if result is None:
+        except ValueError as ve:
+            print(f"Error: {ve}")
             return None
-        
-        print((result[0])) # to see if true or false in cli
-        return bool(result[0])
+        except Exception as e:
+            print(f"Unerwarteter error: {e}")
+            return None
