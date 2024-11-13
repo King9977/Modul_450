@@ -16,6 +16,7 @@ class TestBookService(unittest.TestCase):
                 self.mock_cursor.fetchone.return_value = (expected_result,)
             else:
                 self.mock_cursor.fetchone.return_value = None
+
             result = self.service.is_book_loaned(book_id)
             self.assertEqual(result, expected_result)
             self.mock_cursor.execute.assert_called_with("SELECT loaned FROM Book WHERE id = ?", (book_id,))
