@@ -1,3 +1,5 @@
+from db_connection import get_db_connection
+
 class AuthorService:
     def __init__(self, db_connection):
         self.db_connection = db_connection
@@ -11,3 +13,25 @@ class AuthorService:
         cursor = self.db_connection.cursor()
         cursor.execute("SELECT * FROM Author WHERE id = ?", (author_id,))
         return cursor.fetchone()
+    
+
+if __name__ == "__main__":
+    try:
+        db_connection = get_db_connection()
+        print("Database connection successful!")
+
+        author_service = AuthorService(db_connection)
+
+        author_service.add_author("Mark Twain", "1835-11-30")
+
+        author = author_service.get_author(1)
+        if author:
+            print(f"Author Found: {author['name']}, Born: {author['birth_date']}")
+        else:
+            print("Author not found.")
+
+        db_connection.close()
+        print("Database connection closed!")
+    except Exception as e:
+        print(f"Failed to connect to the database: {e}")
+

@@ -1,3 +1,5 @@
+from db_connection import get_db_connection
+
 import datetime
 
 class BookService:
