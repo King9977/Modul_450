@@ -19,7 +19,15 @@ class UserService:
     def is_user_adult(self, username, birthdate):
         cursor = self.db_connection.cursor()
         cursor.execute("SELECT * FROM User WHERE username = ? AND birthdate = ?", (username, birthdate))
-        current_date = datetime.now()
-        age = (current_date - birthdate).days / 365
+        user = cursor.fetchone()
 
+        if not user:
+            return False  # Benutzer existiert nicht
+
+        # Konvertiere den String (birthdate) in ein datetime-Objekt
+        birth_date = datetime.datetime.strptime(birthdate, "%Y-%m-%d")
+        current_date = datetime.datetime.now()
+
+        # Berechne das Alter in Jahren
+        age = (current_date - birth_date).days // 365
         return age >= 18
