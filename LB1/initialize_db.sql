@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS Book (
     genre_id INTEGER,
     publication_date TEXT,
     loaned BOOLEAN,
-    FOREIGN KEY (author_id) REFERENCES Author(id),
-    FOREIGN KEY (genre_id) REFERENCES Genre(id)
+    FOREIGN KEY (author_id) REFERENCES Author (id) ON DELETE CASCADE,
+    FOREIGN KEY (genre_id) REFERENCES Genre(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS User (

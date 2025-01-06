@@ -5,6 +5,10 @@ class AuthorService:
         self.db_connection = db_connection
 
     def add_author(self, name, birth_date):
+
+        if not name.strip() or not birth_date.strip():
+            raise ValueError("Name und Geburtsdatum dürfen nicht leer sein.")
+          
         cursor = self.db_connection.cursor()
         cursor.execute("INSERT INTO Author (name, birth_date) VALUES (?, ?)", (name, birth_date))
         self.db_connection.commit()
